@@ -1,0 +1,131 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.angelssoftware</groupId>
+	<artifactId>makeamove-site</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Make a Move</name>
+	<description>Dont make your computer Idle</description>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+
+		<!-- Automate to create a bat script that writes runnable jar execution -->
+		<resources>
+			<resource>
+				<directory>resources/build</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/run_make_a_move.bat</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>resources/build</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/run_make_a_move.bat</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
+		<plugins>
+
+			<!-- Always clean project first -->
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>target</directory>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+			<!-- Source code Compiler -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<!-- Create Executable/Runnable Jar file as a release process -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.3.4.RELEASE</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<classifier>spring-boot</classifier>
+							<mainClass>
+								org.angelssoftware.MakeaMove
+							</mainClass>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- 
+				Try to Auto generate the script batch file to execute 
+				the Runnable Jar 
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/target/classes/</directory>
+									<includes>
+										<include>run_make_a_move.bat</include>
+									</includes>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<developers>
+		<developer>
+			<id>ryanseth</id>
+			<name>Ryan Seth Roldan</name>
+			<email>ryan.s.roldan@gmail.com</email>
+			<organization>Angels Software</organization>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<dependency>
+			<groupId>args4j</groupId>
+			<artifactId>args4j</artifactId>
+			<version>2.33</version>
+		</dependency>
+	</dependencies>
+	<url>https://github.com/AngelsCheeseBurgerOrg/MakeaMove</url>
+	<organization>
+		<name>Angels Software Org</name>
+		<url>https://github.com/AngelsCheeseBurgerOrg</url>
+	</organization>
+</project>

@@ -1,15 +1,14 @@
 package org.angelssoftware.classes;
 
 import java.awt.AWTException;
-import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
-import java.awt.Toolkit;
 
 import org.angelssoftware.interfaces.RobotActionInterface;
 import org.angelssoftware.interfaces.RobotMouseInterface;
 import org.angelssoftware.models.RobotProperties;
+import org.angelssoftware.structures.ScreenSize;
 
 public class MousePointerMover extends RobotProperties implements RobotActionInterface, RobotMouseInterface{
 	private int maxHeight;
@@ -27,9 +26,9 @@ public class MousePointerMover extends RobotProperties implements RobotActionInt
 	}
 
 	private void commonInitialization() throws AWTException {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setMaxHeight(screenSize.height);
-		setMaxWidth(screenSize.width);
+		ScreenSize screenSize = ScreenSize.getInstance();
+		setMaxHeight(screenSize.getMaxHeight());
+		setMaxWidth(screenSize.getMaxWidth());
 		setLocalRobot(new Robot());
 	}
 	
@@ -90,5 +89,10 @@ public class MousePointerMover extends RobotProperties implements RobotActionInt
 
 	private void setLocalRobot(Robot localRobot) {
 		this.localRobot = localRobot;
+	}
+	
+	@Override
+	public String toString() {
+		return "Screensize: x=" + getMaxWidth() + ", y=" + getMaxHeight();
 	}
 }
