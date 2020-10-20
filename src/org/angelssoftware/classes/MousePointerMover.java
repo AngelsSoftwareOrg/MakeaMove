@@ -7,6 +7,7 @@ import java.awt.Robot;
 
 import org.angelssoftware.interfaces.RobotActionInterface;
 import org.angelssoftware.interfaces.RobotMouseInterface;
+import org.angelssoftware.interfaces.readonly.RobotMouseInterfaceReadOnly;
 import org.angelssoftware.models.RobotProperties;
 import org.angelssoftware.structures.ScreenSize;
 
@@ -19,7 +20,7 @@ public class MousePointerMover extends RobotProperties implements RobotActionInt
 		commonInitialization();
 	}
 	
-	public MousePointerMover(RobotMouseInterface robotProperties) throws AWTException {
+	public MousePointerMover(RobotMouseInterfaceReadOnly robotProperties) throws AWTException {
 		commonInitialization();
 		this.setMouseHopInPx(robotProperties.getMouseHopInPx());
 		this.setMoveDirection(robotProperties.getMoveDirection());
