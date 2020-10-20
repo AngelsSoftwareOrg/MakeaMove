@@ -58,33 +58,22 @@ public class ApplicationArgumentModel extends RobotProperties{
 	}
 
 	private void matchSetTheArguments() {
-		matchMouseDirectionArg();
 		if(!(executionPeriodArg <=0)) setTimeDelayInMillis(executionPeriodArg);
 		if(!(mouseHopInPxArg <=0)) setMouseHopInPx(mouseHopInPxArg);
+		setMoveDirection(getMoveDirection(mouseDirectionArg));
 	}
 
-	private void matchMouseDirectionArg() {
-		if(StringUtils.isNullOrWhiteSpace(mouseDirectionArg)) return;
-		
-		switch(mouseDirectionArg.toUpperCase().trim()){
-			case "UP":
-				setMoveDirection(MoveDirection.UP);
-				break;
-			case "DOWN":
-				setMoveDirection(MoveDirection.DOWN);
-				break;
-			case "LEFT":
-				setMoveDirection(MoveDirection.LEFT);
-				break;
-			case "RIGHT":
-				setMoveDirection(MoveDirection.RIGHT);
-				break;
-			default:
-				setMoveDirection(MoveDirection.UP);
-				break;
+	public MoveDirection getMoveDirection(String mouseDirectionArg) {
+		if(StringUtils.isNullOrWhiteSpace(mouseDirectionArg)) return MoveDirection.UP;
+		mouseDirectionArg = mouseDirectionArg.trim().toUpperCase();
+		for (MoveDirection direction : MoveDirection.values()) { 
+		    if(direction.toString().equalsIgnoreCase(mouseDirectionArg)) {
+		    	return direction;
+		    }
 		}
+		return MoveDirection.UP;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
