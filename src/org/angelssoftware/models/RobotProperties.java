@@ -1,8 +1,6 @@
 package org.angelssoftware.models;
 
 import org.angelssoftware.interfaces.RobotInterface;
-import org.angelssoftware.interfaces.RobotMouseInterface;
-import org.angelssoftware.interfaces.RobotPropertiesInterface;
 import org.angelssoftware.structures.MoveDirection;
 
 public class RobotProperties implements RobotInterface{
