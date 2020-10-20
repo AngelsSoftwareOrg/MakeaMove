@@ -21,20 +21,20 @@ public class RobotAutomation {
         Timer timer = new Timer();
 
         //delay - delay in milliseconds before task is to be executed.
-        long delay = applicationArgumentModel.getTimeDelayInMillis(); 
+        long delay = 100;
         //period - time in milliseconds between successive task executions.
-        long period = 1000; //applicationArgumentModel.getTimeDelayInMillis();
+        long period = applicationArgumentModel.getTimeDelayInMillis();
         
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-            	for(RobotActionInterface robotIf : listRobotActions) {
-            		robotIf.action();
-            	}
-            }
-        };
-
-        timer.schedule(timerTask, delay, period);
+		TimerTask timerTask = new TimerTask() {
+		    @Override
+		    public void run() {
+		    	for(RobotActionInterface robotIf : listRobotActions) {
+		    		robotIf.action();
+		    	}
+		    }
+		};
+		
+		timer.schedule(timerTask, delay, period);
 	}
 	
 	
