@@ -7,6 +7,7 @@ import java.awt.Robot;
 
 import org.angelssoftware.interfaces.RobotActionInterface;
 import org.angelssoftware.interfaces.RobotMouseInterface;
+import org.angelssoftware.interfaces.readonly.RobotMouseInterfaceReadOnly;
 import org.angelssoftware.models.RobotProperties;
 import org.angelssoftware.structures.ScreenSize;
 
@@ -19,7 +20,7 @@ public class MousePointerMover extends RobotProperties implements RobotActionInt
 		commonInitialization();
 	}
 	
-	public MousePointerMover(RobotMouseInterface robotProperties) throws AWTException {
+	public MousePointerMover(RobotMouseInterfaceReadOnly robotProperties) throws AWTException {
 		commonInitialization();
 		this.setMouseHopInPx(robotProperties.getMouseHopInPx());
 		this.setMoveDirection(robotProperties.getMoveDirection());
@@ -39,22 +40,22 @@ public class MousePointerMover extends RobotProperties implements RobotActionInt
 		
 		switch(getMoveDirection()) {
 			case UP:
-				mpY = mpY - 1;
+				mpY = mpY - getMouseHopInPx();
 				if(mpY<0) mpY = 1;
 				if(mpX<0) mpX = 0;
 				break;
 			case DOWN:
-				mpY = mpY + 1;
+				mpY = mpY + getMouseHopInPx();
 				if(mpY>getMaxHeight()) mpY = getMaxHeight() - 1;
 				if(mpX<0) mpX = 0;
 				break;
 			case LEFT:
-				mpX = mpX - 1;
+				mpX = mpX - getMouseHopInPx();
 				if(mpX<0) mpX = 1;
 				if(mpY<0) mpY = 0;
 				break;
 			case RIGHT:
-				mpX = mpX + 1;
+				mpX = mpX + getMouseHopInPx();
 				if(mpX>getMaxWidth()) mpX = getMaxWidth() - 1;
 				if(mpY<0) mpY = 0;
 				break;

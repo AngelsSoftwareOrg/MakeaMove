@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.angelssoftware</groupId>
 	<artifactId>makeamove-site</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Make a Move</name>
 	<description>Dont make your computer Idle</description>
@@ -30,6 +30,19 @@
 		</resources>
 
 		<plugins>
+
+			<!-- Force Author Ship -->
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<version>2.10.3</version>
+				<configuration>
+					<fixTags>author</fixTags>
+					<force>true</force>
+					<fixFieldComment>false</fixFieldComment>
+					<fixMethodComment>false</fixMethodComment>
+				</configuration>
+			</plugin>
 
 			<!-- Always clean project first -->
 			<plugin>
@@ -74,10 +87,8 @@
 				</executions>
 			</plugin>
 
-			<!-- 
-				Try to Auto generate the script batch file to execute 
-				the Runnable Jar 
-			-->
+			<!-- Try to Auto generate the script batch file to execute the Runnable 
+				Jar -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -90,10 +101,10 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/target/</outputDirectory>
+							<outputDirectory>${basedir}/target</outputDirectory>
 							<resources>
 								<resource>
-									<directory>${basedir}/target/classes/</directory>
+									<directory>${basedir}/target/classes</directory>
 									<includes>
 										<include>run_make_a_move.bat</include>
 									</includes>

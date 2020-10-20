@@ -6,13 +6,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.angelssoftware.interfaces.RobotActionInterface;
-import org.angelssoftware.models.ApplicationArgumentModel;
+import org.angelssoftware.interfaces.readonly.RobotInterfaceReadOnly;
 
 public class RobotAutomation {
-	private ApplicationArgumentModel applicationArgumentModel;
+	private RobotInterfaceReadOnly applicationArgumentModel;
 	private List<RobotActionInterface> listRobotActions;
 	
-	public RobotAutomation(ApplicationArgumentModel applicationArgumentModel) {
+	public RobotAutomation(RobotInterfaceReadOnly applicationArgumentModel) {
 		this.applicationArgumentModel = applicationArgumentModel;
 		this.listRobotActions = new ArrayList<RobotActionInterface>();
 	}
