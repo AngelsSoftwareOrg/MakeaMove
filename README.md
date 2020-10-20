@@ -98,5 +98,9 @@ License
 
 CC0-1.0 License
 
+Author
+----
+
+by: Ryan Seth Roldan
 
 **Free Angellic Software, Yeah! **

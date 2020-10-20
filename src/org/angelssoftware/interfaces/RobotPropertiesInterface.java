@@ -1,6 +1,8 @@
 package org.angelssoftware.interfaces;
 
-public interface RobotPropertiesInterface {
-	public int getTimeDelayInMillis();
-	public void setTimeDelayInMillis(int timeDelayInMillis);
+import org.angelssoftware.interfaces.readonly.RobotPropertiesInterfaceReadOnly;
+import org.angelssoftware.interfaces.writeonly.RobotPropertiesInterfaceWriteOnly;
+
+public interface RobotPropertiesInterface extends RobotPropertiesInterfaceReadOnly, RobotPropertiesInterfaceWriteOnly{
+
 }

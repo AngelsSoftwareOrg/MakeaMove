@@ -1,7 +1,8 @@
 package org.angelssoftware.interfaces;
 
-public interface RobotInterface extends 
-		RobotPropertiesInterface, 
-		RobotMouseInterface {
+import org.angelssoftware.interfaces.readonly.RobotInterfaceReadOnly;
+import org.angelssoftware.interfaces.writeonly.RobotInterfaceWriteOnly;
 
+public interface RobotInterface extends 
+					RobotInterfaceReadOnly, RobotInterfaceWriteOnly {
 }

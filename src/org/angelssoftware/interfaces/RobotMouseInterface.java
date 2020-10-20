@@ -1,10 +1,9 @@
 package org.angelssoftware.interfaces;
 
-import org.angelssoftware.structures.MoveDirection;
+import org.angelssoftware.interfaces.readonly.RobotMouseInterfaceReadOnly;
+import org.angelssoftware.interfaces.writeonly.RobotMouseInterfaceWriteOnly;
 
-public interface RobotMouseInterface {
-	public int getMouseHopInPx();
-	public void setMouseHopInPx(int mouseHopInPx);
-	public MoveDirection getMoveDirection();
-	public void setMoveDirection(MoveDirection moveDirection);
+public interface RobotMouseInterface extends RobotMouseInterfaceReadOnly, RobotMouseInterfaceWriteOnly {
+
+
 }
